@@ -3,7 +3,7 @@
 This Chrome extension adds a button on [character.ai][c-ai-url] chat pages which
 allows you to create new chats using the legacy/old chat interface.
 
-**Download:** TBD
+**Download:** [Chrome Web Store][store-url]
 
 ## FAQ
 
@@ -75,3 +75,4 @@ MIT.
 
 [c-ai-url]: https://character.ai
 [src-url]: https://github.com/jozsefsallai/c.ai-legacy-chats/blob/master/src/content.ts
+[store-url]: https://chrome.google.com/webstore/detail/characterai-legacy-chats/ffjaddegbanepalfeabpbjlimjalecgc
