@@ -1,3 +1,14 @@
+function log(
+  level: 'info' | 'warn' | 'error',
+  message: string,
+  ...rest: any
+): void {
+  const prefix = '[Character.AI Legacy Chat]';
+  const logFn = console[level];
+
+  logFn(`${prefix} ${message}`, ...rest);
+}
+
 async function mewChat(characterId: string, authToken: string): Promise<void> {
   try {
     const res = await fetch('https://beta.character.ai/chat/history/create/', {
@@ -18,7 +29,7 @@ async function mewChat(characterId: string, authToken: string): Promise<void> {
       alert(
         'Unexpected response from Character.AI. Check the console for more info.',
       );
-      console.warn('Unexpected response from Character.AI', data);
+      log('warn', 'Unexpected response from Character.AI', data);
       return;
     }
 
@@ -27,7 +38,8 @@ async function mewChat(characterId: string, authToken: string): Promise<void> {
     alert(
       'Failed to create a new chat using the legacy API. Check the console for more info.',
     );
-    console.error(err);
+
+    log('error', 'Failed to create a new chat using the legacy API.', err);
   }
 }
 
@@ -64,7 +76,9 @@ function createButton(): HTMLButtonElement {
   button.id = 'new-legacy-chat-button';
   button.style.position = 'fixed';
   button.style.top = '16px';
-  button.style.right = '16px';
+  button.style.left = '50%';
+  button.style.transform = 'translateX(-50%)';
+  button.style.zIndex = '9999';
 
   button.addEventListener('click', newChatWithCurrentCharacter);
 
@@ -81,13 +95,14 @@ function injectButton() {
   document.body.appendChild(button);
 }
 
-function destroyButton() {
+function destroyButton(): boolean {
   const button = document.querySelector('#new-legacy-chat-button');
   if (!button) {
-    return;
+    return false;
   }
 
   button.remove();
+  return true;
 }
 
 chrome.runtime.onMessage.addListener((message, _sender, _sendResponse) => {
@@ -100,11 +115,15 @@ chrome.runtime.onMessage.addListener((message, _sender, _sendResponse) => {
 
   if (pathname.startsWith('/chat')) {
     injectButton();
-    console.log('[Character.AI Legacy Chat] Button injected.');
+    log('info', 'Button injected.');
   } else {
     destroyButton();
-    console.log('[Character.AI Legacy Chat] Button destroyed.');
+    const didDestroy = destroyButton();
+
+    if (didDestroy) {
+      log('info', 'Button destroyed.');
+    }
   }
 });
 
-console.log('[Character.AI Legacy Chat] Extension loaded.');
+log('info', 'Extension loaded.');
