@@ -10,8 +10,10 @@ function log(
 }
 
 async function mewChat(characterId: string, authToken: string): Promise<void> {
+  const host = window.location.host;
+
   try {
-    const res = await fetch('https://beta.character.ai/chat/history/create/', {
+    const res = await fetch(`https://${host}/chat/history/create/`, {
       method: 'POST',
       body: JSON.stringify({ character_external_id: characterId }),
       credentials: 'same-origin',
@@ -33,7 +35,7 @@ async function mewChat(characterId: string, authToken: string): Promise<void> {
       return;
     }
 
-    window.location.href = `https://beta.character.ai/chat?char=${characterId}&hist=${chatId}`;
+    window.location.href = `https://${host}/chat?char=${characterId}&hist=${chatId}`;
   } catch (err) {
     alert(
       'Failed to create a new chat using the legacy API. Check the console for more info.',

@@ -1,6 +1,6 @@
 {
   "name": "c.ai-legacy-chats",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Chrome extension that adds a button to create legacy chats on character.ai",
   "main": "index.js",
   "scripts": {

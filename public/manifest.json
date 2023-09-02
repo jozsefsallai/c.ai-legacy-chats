@@ -3,12 +3,15 @@
   "name": "Character.AI legacy chats",
   "short_name": "c.ai legacy",
   "description": "Adds a button to create chats with the old/legacy version of Character.AI",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "permissions": ["activeTab", "scripting"],
-  "host_permissions": ["https://beta.character.ai/*"],
+  "host_permissions": [
+    "https://beta.character.ai/*",
+    "https://plus.character.ai/*"
+  ],
   "content_scripts": [
     {
-      "matches": ["https://beta.character.ai/*"],
+      "matches": ["https://beta.character.ai/*", "https://plus.character.ai/*"],
       "js": ["content.js"]
     }
   ],
