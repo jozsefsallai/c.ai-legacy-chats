@@ -5,6 +5,8 @@ allows you to create new chats using the legacy/old chat interface.
 
 **Download:** [Chrome Web Store][store-url]
 
+> **Note:** This extension only works with the OLD version of character.ai.
+
 ## FAQ
 
 **Why?**
@@ -73,6 +75,6 @@ unpacked inside Chrome.
 
 MIT.
 
-[c-ai-url]: https://character.ai
+[c-ai-url]: https://old.character.ai
 [src-url]: https://github.com/jozsefsallai/c.ai-legacy-chats/blob/master/src/content.ts
 [store-url]: https://chrome.google.com/webstore/detail/characterai-legacy-chats/ffjaddegbanepalfeabpbjlimjalecgc
